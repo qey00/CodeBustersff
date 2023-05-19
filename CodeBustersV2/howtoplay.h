@@ -1,4 +1,5 @@
 #pragma once
+#include "gameplay.h"
 
 namespace CodeBustersV2 {
 
@@ -34,9 +35,11 @@ namespace CodeBustersV2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::PictureBox^ readybtn;
+
 	private: System::Windows::Forms::Label^ rdybtn;
 	private: System::Windows::Forms::Label^ mechlbl;
+	private: System::Windows::Forms::TextBox^ name;
+
 	protected:
 
 	private:
@@ -53,23 +56,10 @@ namespace CodeBustersV2 {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(howtoplay::typeid));
-			this->readybtn = (gcnew System::Windows::Forms::PictureBox());
 			this->rdybtn = (gcnew System::Windows::Forms::Label());
 			this->mechlbl = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->readybtn))->BeginInit();
+			this->name = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
-			// 
-			// readybtn
-			// 
-			this->readybtn->BackColor = System::Drawing::Color::Transparent;
-			this->readybtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"readybtn.Image")));
-			this->readybtn->Location = System::Drawing::Point(248, 282);
-			this->readybtn->Name = L"readybtn";
-			this->readybtn->Size = System::Drawing::Size(285, 117);
-			this->readybtn->SizeMode = System::Windows::Forms::PictureBoxSizeMode::AutoSize;
-			this->readybtn->TabIndex = 0;
-			this->readybtn->TabStop = false;
-			this->readybtn->Click += gcnew System::EventHandler(this, &howtoplay::readybtn_Click);
 			// 
 			// rdybtn
 			// 
@@ -79,12 +69,13 @@ namespace CodeBustersV2 {
 			this->rdybtn->Font = (gcnew System::Drawing::Font(L"Agent Orange", 24.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->rdybtn->ForeColor = System::Drawing::Color::White;
-			this->rdybtn->Location = System::Drawing::Point(295, 314);
+			this->rdybtn->Location = System::Drawing::Point(292, 347);
 			this->rdybtn->Name = L"rdybtn";
 			this->rdybtn->Size = System::Drawing::Size(177, 55);
 			this->rdybtn->TabIndex = 1;
 			this->rdybtn->Text = L"ready";
 			this->rdybtn->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->rdybtn->Click += gcnew System::EventHandler(this, &howtoplay::rdybtn_Click);
 			// 
 			// mechlbl
 			// 
@@ -92,7 +83,7 @@ namespace CodeBustersV2 {
 			this->mechlbl->BackColor = System::Drawing::Color::Transparent;
 			this->mechlbl->Font = (gcnew System::Drawing::Font(L"Agent Orange", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->mechlbl->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->mechlbl->ForeColor = System::Drawing::SystemColors::Control;
 			this->mechlbl->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
 			this->mechlbl->Location = System::Drawing::Point(186, 22);
 			this->mechlbl->Name = L"mechlbl";
@@ -100,25 +91,41 @@ namespace CodeBustersV2 {
 			this->mechlbl->TabIndex = 2;
 			this->mechlbl->Text = L"How to Play";
 			// 
+			// name
+			// 
+			this->name->Font = (gcnew System::Drawing::Font(L"Agent Orange", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->name->Location = System::Drawing::Point(251, 293);
+			this->name->Multiline = true;
+			this->name->Name = L"name";
+			this->name->Size = System::Drawing::Size(249, 51);
+			this->name->TabIndex = 3;
+			this->name->TextChanged += gcnew System::EventHandler(this, &howtoplay::textBox1_TextChanged);
+			// 
 			// howtoplay
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(784, 411);
+			this->Controls->Add(this->name);
 			this->Controls->Add(this->mechlbl);
 			this->Controls->Add(this->rdybtn);
-			this->Controls->Add(this->readybtn);
 			this->Name = L"howtoplay";
 			this->Text = L"howtoplay";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->readybtn))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-		//ready button
-	private: System::Void readybtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	//ready button
+	private: System::Void rdybtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		gameplay^ sif = gcnew gameplay();
+		sif->Show();
+		Hide();
+	}
+	//Text box for getting the value
+	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
 	}
 };

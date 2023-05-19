@@ -120,10 +120,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="gameplay.cpp" />
     <ClCompile Include="howtoplay.cpp" />
     <ClCompile Include="startingWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gameplay.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="howtoplay.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -132,6 +136,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="gameplay.resx">
+      <DependentUpon>gameplay.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="howtoplay.resx">
       <DependentUpon>howtoplay.h</DependentUpon>
     </EmbeddedResource>
